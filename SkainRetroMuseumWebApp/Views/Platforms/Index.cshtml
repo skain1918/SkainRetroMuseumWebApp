@@ -1,0 +1,28 @@
+﻿@using SkainRetroMuseumWebApp.DTO
+@model IEnumerable<PlatformDTO>
+
+@{
+    ViewData["Title"] = "Platformy";
+}
+
+<h1>Platformy</h1>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Název</th>
+            <th>Rok vzniku 🧑‍💻</th>
+            <th>Popis 📒</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var platform in Model) {
+        <tr>
+            <td>@platform.Name</td>
+            <td>@platform.YearSince</td>
+            <td>@platform.Description</td>
+    </tr>}
+    </tbody>
+</table>
