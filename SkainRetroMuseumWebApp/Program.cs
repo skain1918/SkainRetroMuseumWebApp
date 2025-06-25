@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MuseumDbConnection")));
 builder.Services.AddScoped<PlatformsService>();
+builder.Services.AddScoped<BranchesService>();
 
 var app = builder.Build();
 

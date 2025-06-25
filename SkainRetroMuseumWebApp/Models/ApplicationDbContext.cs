@@ -7,4 +7,5 @@ public class ApplicationDbContext:DbContext {
         }
     public DbSet<Platform> Platforms { get; set; }
     public DbSet<Hardware> Hardwares { get; set; }
+    public DbSet<Branch> Branches { get; set; }
     }
