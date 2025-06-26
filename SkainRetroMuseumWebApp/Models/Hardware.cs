@@ -9,6 +9,7 @@ namespace SkainRetroMuseumWebApp.Models {
         public string Type { get; set; }
         public string Condition { get; set; }
         public int? YearOfManufactured { get; set; }
-
-        }
+        public int BranchId { get; set; }
+        public Branch Branch { get; set; }
+    }
     }

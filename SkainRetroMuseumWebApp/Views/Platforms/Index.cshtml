@@ -1,5 +1,4 @@
-﻿@using SkainRetroMuseumWebApp.DTO
-@model IEnumerable<PlatformDTO>
+﻿@model IEnumerable<PlatformDTO>
 
 @{
     ViewData["Title"] = "Platformy";
@@ -7,13 +6,14 @@
 
 <h1>Platformy</h1>
 <div>
-    <a class="btn btn-outline-primary btn-sm">Přidat platformu</a>
+    <a class="btn btn-outline-primary btn-sm" asp-action="Create">Přidat platformu</a>
 </div>
 
 <table class="table">
     <thead>
         <tr>
             <th>Název</th>
+            <th>🕵️</th>
             <th>Rok vzniku 🧑‍💻</th>
             <th>Popis 📒</th>
         </tr>
@@ -22,8 +22,9 @@
     @foreach (var platform in Model) {
         <tr>
             <td>@platform.Name</td>
+                <td><a asp-action="Detail" asp-route-id="@platform.Id">🔎</a></td>
             <td>@platform.YearSince</td>
-            <td>@platform.Description</td>
+            <td>@((@platform.Description?.Length ?? 0) > 40 ? platform.Description?.Substring(0,40) + "..." : platform.Description) </td>
     </tr>}
     </tbody>
 </table>

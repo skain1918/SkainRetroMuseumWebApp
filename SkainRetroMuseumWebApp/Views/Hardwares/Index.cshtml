@@ -1,0 +1,33 @@
+﻿@model IEnumerable<HardwareDTO>
+@{
+    ViewData["Title"] = "Hardware";
+}
+<h1>Hardware</h1>
+<div>
+    <a class="btn btn-outline-primary btn-sm" asp-action="Create">Přidat hardware</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Název</th>
+            <th>Rok vzniku 🧑‍💻</th>
+            <th>Popis 📒</th>
+            <th>Výrobce</th>
+            <th>Stav</th>
+            <th>Pobočka</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hardware in Model)
+        {
+            <tr>
+                <td>@hardware.Name</td>
+                <td>@hardware.YearOfManufactured</td>
+                <td>@hardware.Manufacturer</td>
+                <td>@hardware.Condition</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

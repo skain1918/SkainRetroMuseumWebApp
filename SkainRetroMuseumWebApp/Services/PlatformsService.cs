@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using SkainRetroMuseumWebApp.DTO;
 using SkainRetroMuseumWebApp.Models;
 
@@ -26,6 +27,21 @@ public class PlatformsService
     {
         await _dbContext.Platforms.AddAsync(mapToModel(newplatform));
         await _dbContext.SaveChangesAsync();
+    }
+    public async Task<PlatformDTO> UpdateAsync(PlatformDTO updatedplatform)
+    {
+        _dbContext.Update(mapToModel(updatedplatform));
+        await _dbContext.SaveChangesAsync();
+        return updatedplatform;
+    }
+    public async Task<PlatformDTO> GetByIdAsync(int id)
+    {
+        var platform = await _dbContext.Platforms.FirstOrDefaultAsync(p => p.Id == id);
+        if(platform == null)
+        {
+            return null;
+        }
+        return mapToDto(platform);
     }
     private PlatformDTO mapToDto(Platform platform)
     {

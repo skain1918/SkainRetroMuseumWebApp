@@ -10,6 +10,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MuseumDbConnection")));
 builder.Services.AddScoped<PlatformsService>();
 builder.Services.AddScoped<BranchesService>();
+builder.Services.AddScoped<HardwaresService>();
 
 var app = builder.Build();
 
