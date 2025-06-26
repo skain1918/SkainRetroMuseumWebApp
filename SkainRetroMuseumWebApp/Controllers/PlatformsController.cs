@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkainRetroMuseumWebApp.DTO;
+using SkainRetroMuseumWebApp.Models;
 using SkainRetroMuseumWebApp.Services;
 
-namespace SkainRetroMuseumWebApp.Controllers; 
+namespace SkainRetroMuseumWebApp.Controllers;
 public class PlatformsController : Controller
 {
     private PlatformsService _service;
@@ -21,21 +22,26 @@ public class PlatformsController : Controller
     }
     public async Task<IActionResult> Detail(int id)
     {
-        var platform = await _service.GetByIdAsync(id);
-        if (platform == null)
-        {
-            return NotFound();
-        }
-        return View(platform);
+        return await getPlatformById(id);
     }
-    public async Task<IActionResult> Edit(int id)
+
+    private async Task<IActionResult> getPlatformById(int id)
     {
         var platform = await _service.GetByIdAsync(id);
         if (platform == null)
         {
-            return NotFound();
+            return View("NotFound");
         }
         return View(platform);
+    }
+
+    public async Task<IActionResult> Edit(int id)
+    {
+        return await getPlatformById(id);
+    }
+    public async Task<IActionResult> Delete(int id)
+    {
+        return await getPlatformById(id);
     }
     [HttpPost]
     public async Task<IActionResult> Create(PlatformDTO newPlatform)
@@ -52,6 +58,15 @@ public class PlatformsController : Controller
             return RedirectToAction("Index");
         }
         return View(platform);
-
+    }
+    [HttpPost]
+    public async Task<IActionResult> DeleteSubmit(int id)
+    {
+        var platformToDelete = await _service.GetByIdAsync(id);
+        if(platformToDelete == null){
+            return View("NotFound");
+        }
+        await _service.DeleteAsync(id);
+        return RedirectToAction("Index");
     }
 }

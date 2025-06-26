@@ -1,0 +1,23 @@
+﻿@model PlatformDTO
+
+@{
+    ViewData["Title"] = "Opravdu chcete smazat platformu?";
+}
+
+
+<h1 class="text-danger text-lg-center">@ViewData["Title"]</h1>
+
+
+<h2>@Model.Name</h2>
+
+<p><strong>Rok vzniku:</strong> @Model.YearSince</p>
+
+<p><strong>Popis:</strong> @Model.Description</p>
+
+<div>
+    <form method="post">
+    <a class="btn btn-success" asp-action="Detail" asp-route-id="@Model.Id">🔙 Ne, zpět na detail</a>
+
+        <button class="btn btn-danger btn-sm" type="submit" asp-action="DeleteSubmit" asp-route-id="@Model.Id">❌ Smazat</button>
+    </form>
+</div>

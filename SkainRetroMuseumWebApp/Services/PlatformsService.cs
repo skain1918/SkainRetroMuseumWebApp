@@ -43,6 +43,12 @@ public class PlatformsService
         }
         return mapToDto(platform);
     }
+    public async Task DeleteAsync(int id)
+    {
+        var platformToDelete = await _dbContext.Platforms.FirstOrDefaultAsync(p => p.Id == id);
+        _dbContext.Remove(platformToDelete);
+        await _dbContext.SaveChangesAsync();
+    }
     private PlatformDTO mapToDto(Platform platform)
     {
         return new PlatformDTO
@@ -63,4 +69,6 @@ public class PlatformsService
             Description = platformDTO.Description,
         };
     }
+
+
 }

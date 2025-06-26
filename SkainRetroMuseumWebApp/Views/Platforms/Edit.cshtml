@@ -25,9 +25,9 @@
         <label asp-for="Description"></label>
     </div>
     <div>
-        <a class="btn btn-outline-secondary btn-sm" asp-action="Detail">🔙 Zpět na detail</a>
+        <a class="btn btn-outline-secondary btn-sm" asp-action="Detail" asp-route-id="@Model.Id">🔙 Zpět na detail</a>
 
-        <input class="btn btn-warning btn-sm" type="submit" value="Uložit" />
+        <input class="btn btn-warning btn-sm" type="submit" value="💾 Uložit" />
 
     </div>
 
