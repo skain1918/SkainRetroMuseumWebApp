@@ -1,30 +1,62 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkainRetroMuseumWebApp.DTO;
+using SkainRetroMuseumWebApp.Models;
 using SkainRetroMuseumWebApp.Services;
 using System.Threading.Tasks;
 
 namespace SkainRetroMuseumWebApp.Controllers;
 
-public class BranchesController : Controller
-{
+public class BranchesController : Controller {
     private BranchesService _service;
-    public BranchesController(BranchesService service)
-    {
+    public BranchesController(BranchesService service) {
         _service = service;
     }
-    public async Task<IActionResult> Index()
-    {
+    public async Task<IActionResult> Index() {
         var allBranches = await _service.GetAllAsync();
         return View(allBranches);
     }
-    public async Task<IActionResult> Create()
-    {
+    public async Task<IActionResult> Create() {
         return View();
     }
+    public async Task<IActionResult> Detail(int id) {
+        return await getBranchById(id);
+    }
+    private async Task<IActionResult> getBranchById(int id) {
+        var branch = await _service.GetByIdAsync(id);
+        if (branch == null) {
+            return View("NotFound");
+        }
+        return View(branch);
+    }
+    public async Task<IActionResult> Edit(int id) {
+        return await getBranchById(id);
+    }
+    public async Task<IActionResult> Delete(int id) {
+        return await getBranchById(id);
+    }
     [HttpPost]
-    public async Task<IActionResult> Create(BranchDTO newBranch)
-    {
-        await _service.CreateAsync(newBranch);
+    public async Task<IActionResult> Create(BranchDTO newBranch) {
+        if (ModelState.IsValid) {
+            await _service.CreateAsync(newBranch);
+            return RedirectToAction("Index");
+        }
+        return View(newBranch);
+    }
+    [HttpPost]
+    public async Task<IActionResult> Edit(int id, BranchDTO branch) {
+        if (ModelState.IsValid) {
+            await _service.UpdateAsync(branch);
+            return RedirectToAction("Index");
+        }
+        return View(branch);
+    }
+    [HttpPost]
+    public async Task<IActionResult> DeleteSubmit(int id) {
+        var branchToDelete = await _service.GetByIdAsync(id);
+        if (branchToDelete == null) {
+            return View("NotFound");
+        }
+        await _service.DeleteAsync(id);
         return RedirectToAction("Index");
     }
 }

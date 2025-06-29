@@ -1,0 +1,23 @@
+﻿@model SoftwareDTO
+@{
+    ViewData["Title"] = "Hra";
+}
+
+<h1>Přidání hry</h1>
+
+<form method="post" asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input type="text" asp-for="Name" class="form-control" />
+        <label asp-for="Year"></label>
+        <input type="number" asp-for="Year" class="form-control" />
+        <label class="control-label" asp-for="PlatformId"></label>
+        <select class="form-control" asp-items="ViewBag.Platforms" asp-for="PlatformId"></select>
+        <label asp-for="Description"></label>
+        <input type="text" asp-for="Description" class="form-control" />
+
+    </div>
+    <br />
+    <a class="btn btn-outline-secondary btn-sm" asp-action="Index">🔙 Zpět na seznam her</a>
+    <input class="btn btn-primary" type="submit" value="💾 Create" />
+</form>

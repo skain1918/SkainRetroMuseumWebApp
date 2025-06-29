@@ -1,7 +1,7 @@
-﻿@model PlatformDTO
+﻿@model SoftwareDTO
 
 @{
-    ViewData["Title"] = "Detail platformy";
+    ViewData["Title"] = "Editace hry";
 }
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
@@ -19,9 +19,13 @@
         <label asp-for="Name"></label>
     </div>
     <div class="form-floating mb-3">
-        <input asp-for="YearSince" type="text" class="form-control" placeholder="." />
-        <span asp-validation-for="YearSince" class="text-danger"></span>
-        <label asp-for="YearSince"></label>
+        <input asp-for="Year" type="text" class="form-control" placeholder="." />
+        <span asp-validation-for="Year" class="text-danger"></span>
+        <label asp-for="Year"></label>
+    </div>
+    <div>
+        <label class="control-label" asp-for="PlatformId"></label>
+        <select class="form-control" asp-items="ViewBag.Platforms" asp-for="PlatformId"></select>
     </div>
     <div class="form-floating mb-3">
         <textarea asp-for="Description" style="height: 15rem
@@ -31,9 +35,8 @@
     <div>
         <a class="btn btn-outline-secondary btn-sm" asp-action="Detail" asp-route-id="@Model.Id">🔙 Zpět na detail</a>
 
-        <input class="btn btn-warning btn-sm" type="submit" value="💾 Uložit" />
+        <input class="btn btn-warning btn-sm" type="submit" value="💾 Uložit změny" />
 
     </div>
 
 </form>
-

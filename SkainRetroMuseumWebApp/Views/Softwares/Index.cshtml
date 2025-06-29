@@ -1,0 +1,28 @@
+﻿@model IEnumerable<SoftwareListViewModel>
+@{
+    ViewData["Title"] = "Games";
+}
+<h1>Games</h1>
+<div>
+    <a class="btn btn-outline-primary btn-sm" asp-action="Create">Přidat hru</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Název 🎮</th>
+            <th>Rok vydaní 🧑‍💻</th>
+            <th>Platforma 🕹️</th>
+            <th>Podrobnosti 📓</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var software in Model) {
+            <tr>
+                <td><a asp-action="Detail" asp-route-id="@software.Id">@software.Name</a></td>
+                <td>@software.Year</td>
+                <td>@software.PlatformName</td>
+                <td>@software.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>

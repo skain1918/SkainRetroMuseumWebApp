@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkainRetroMuseumWebApp.Models;
 
@@ -10,9 +11,11 @@ using SkainRetroMuseumWebApp.Models;
 namespace SkainRetroMuseumWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250627073039_addPlatformToHardwareModel")]
+    partial class addPlatformToHardwareModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,34 +125,6 @@ namespace SkainRetroMuseumWebApp.Migrations
                     b.ToTable("Platforms");
                 });
 
-            modelBuilder.Entity("SkainRetroMuseumWebApp.Models.Software", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PlatformId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlatformId");
-
-                    b.ToTable("Softwares");
-                });
-
             modelBuilder.Entity("SkainRetroMuseumWebApp.Models.Hardware", b =>
                 {
                     b.HasOne("SkainRetroMuseumWebApp.Models.Branch", "Branch")
@@ -165,17 +140,6 @@ namespace SkainRetroMuseumWebApp.Migrations
                         .IsRequired();
 
                     b.Navigation("Branch");
-
-                    b.Navigation("Platform");
-                });
-
-            modelBuilder.Entity("SkainRetroMuseumWebApp.Models.Software", b =>
-                {
-                    b.HasOne("SkainRetroMuseumWebApp.Models.Platform", "Platform")
-                        .WithMany()
-                        .HasForeignKey("PlatformId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Platform");
                 });

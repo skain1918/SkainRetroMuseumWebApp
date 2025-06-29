@@ -1,7 +1,6 @@
-﻿@using SkainRetroMuseumWebApp.DTO
-@model IEnumerable<BranchDTO>
+﻿@model IEnumerable<BranchDTO>
 @{
-    ViewData["Title"] = "Branches";
+    ViewData["Title"] = "Pobočky";
 }
 <h1>Pobočky</h1>
 <div>
@@ -11,11 +10,12 @@
     <thead>
         <tr>
             <th>Název</th>
+            <th>🏰</th>
             <th>Město 🏢</th>
             <th>Adresa 📬</th>
             <th>Email 📧</th>
             <th>Telefón ☎️</th>
-            <th>Poznámka</th>
+            <th>Poznámka 📒</th>
         </tr>
     </thead>
     <tbody>
@@ -23,11 +23,12 @@
         {
             <tr>
                 <td>@branch.Name</td>
+                <td><a asp-action="Detail" asp-route-id="@branch.Id">🔎</a></td>
                 <td>@branch.Town</td>
                 <td>@branch.Street</td>
                 <td>@branch.Email</td>
                 <td>@branch.PhoneNumber</td>
-                <td>@branch.Note</td>
+                <td>@((@branch.Note?.Length ?? 0) > 40 ? @branch.Note?.Substring(0, 40) + "..." : @branch.Note) </td>
             </tr>
         }
 

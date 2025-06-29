@@ -1,0 +1,17 @@
+﻿@model SoftwareDTO
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p><strong>Rok vydání:</strong> @Model.Year</p>
+<p><strong>Platforma:</strong> @Model.PlatformName</p>
+<p><strong>Podrobnosti:</strong> @Model.Description</p>
+
+<div>
+    <a class="btn btn-outline-secondary btn-sm" asp-action="Index">🔙 Zpět na seznam her</a>
+    <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@Model.Id">📝 Editovat</a>
+    <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@Model.Id">❌ Smazat</a>
+</div>

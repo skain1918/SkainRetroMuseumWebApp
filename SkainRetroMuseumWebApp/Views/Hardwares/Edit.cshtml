@@ -1,0 +1,52 @@
+﻿@model HardwareDTO
+
+@{
+    ViewData["Title"] = "Editace techniky";
+}
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<h2>@Model.Name</h2>
+<form method="post">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="form-floating mb-3">
+        <input asp-for="Name" type="text" class="form-control" placeholder="." />
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <label asp-for="Name"></label>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Manufacturer" type="text" class="form-control" placeholder="." />
+        <span asp-validation-for="Manufacturer" class="text-danger"></span>
+        <label asp-for="Manufacturer"></label>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Type" type="text" class="form-control" placeholder="." />
+        <span asp-validation-for="Type" class="text-danger"></span>
+        <label asp-for="Type"></label>
+    </div>
+    <div>
+        <label class="control-label" asp-for="PlatformId"></label>
+        <select class="form-control" asp-items="ViewBag.Platforms" asp-for="PlatformId"></select>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Condition" type="text" class="form-control" placeholder="." />
+        <span asp-validation-for="Condition" class="text-danger"></span>
+        <label asp-for="Condition"></label>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="YearOfManufactured" type="number" class="form-control" placeholder="." />
+        <label asp-for="YearOfManufactured"></label>
+    </div>
+    <div>
+        <label class="control-label" asp-for="BranchId"></label>
+        <select class="form-control" asp-items="ViewBag.Branches" asp-for="BranchId"></select>
+    </div>
+    <div>
+        <a class="btn btn-outline-secondary btn-sm" asp-action="Detail" asp-route-id="@Model.Id">🔙 Zpět na detail</a>
+        <input class="btn btn-warning btn-sm" type="submit" value="💾 Uložit změny" />
+    </div>
+</form>

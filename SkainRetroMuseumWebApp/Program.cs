@@ -11,6 +11,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<PlatformsService>();
 builder.Services.AddScoped<BranchesService>();
 builder.Services.AddScoped<HardwaresService>();
+builder.Services.AddScoped<SoftwaresService>();
 
 var app = builder.Build();
 

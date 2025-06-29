@@ -1,0 +1,21 @@
+﻿@model HardwareDTO
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p><strong>Název techniky:</strong> @Model.Name</p>
+<p><strong>Výrobce:</strong> @Model.Manufacturer</p>
+<p><strong>Typ:</strong> @Model.Type</p>
+<p><strong>Platforma:</strong> @Model.PlatformName</p>
+<p><strong>Stav:</strong> @Model.Condition</p>
+<p><strong>Rok výroby:</strong> @Model.YearOfManufactured</p>
+<p><strong>Pobočka:</strong> @Model.BranchName</p>
+
+<div>
+    <a class="btn btn-outline-secondary btn-sm" asp-action="Index">🔙 Zpět na seznam techniky</a>
+    <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@Model.Id">📝 Editovat</a>
+    <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@Model.Id">❌ Smazat</a>
+</div>

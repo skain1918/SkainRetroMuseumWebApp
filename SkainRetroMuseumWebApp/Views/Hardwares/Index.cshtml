@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HardwareDTO>
+﻿@model IEnumerable<HardwareListViewModel>
 @{
     ViewData["Title"] = "Hardware";
 }
@@ -9,23 +9,22 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Název</th>
+            <th>Název 🎮</th>
             <th>Rok vzniku 🧑‍💻</th>
-            <th>Popis 📒</th>
-            <th>Výrobce</th>
-            <th>Stav</th>
-            <th>Pobočka</th>
+            <th>Výrobce 🏭</th>
+            <th>Stav 🏋️‍</th>
+            <th>Pobočka 🕹️</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var hardware in Model)
         {
             <tr>
-                <td>@hardware.Name</td>
+                <td><a asp-action="Detail" asp-route-id="@hardware.Id">@hardware.Name</a></td>
                 <td>@hardware.YearOfManufactured</td>
                 <td>@hardware.Manufacturer</td>
                 <td>@hardware.Condition</td>
-                <td></td>
+                <td><a href="/branches/detail/@hardware.BranchId">@hardware.BranchName</a></td>
             </tr>
         }
     </tbody>

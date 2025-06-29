@@ -1,0 +1,22 @@
+﻿@model HardwareDTO
+@{
+    ViewData["Title"] = "Opravdu chcete smazat techniku?";
+}
+
+<h1 class="text-danger text-lg-center">@ViewData["Title"]</h1>
+
+<p><strong>Název techniky:</strong> @Model.Name</p>
+<p><strong>Výrobce:</strong> @Model.Manufacturer</p>
+<p><strong>Typ:</strong> @Model.Type</p>
+<p><strong>Platforma:</strong> @Model.PlatformName</p>
+<p><strong>Stav:</strong> @Model.Condition</p>
+<p><strong>Rok výroby:</strong> @Model.YearOfManufactured</p>
+<p><strong>Pobočka:</strong> @Model.BranchName</p>
+
+<div>
+    <form method="post">
+        <a class="btn btn-success" asp-action="Detail" asp-route-id="@Model.Id">🔙 Ne, zpět na detail</a>
+
+        <button class="btn btn-danger btn-sm" type="submit" asp-action="DeleteSubmit" asp-route-id="@Model.Id">❌ Smazat</button>
+    </form>
+</div>

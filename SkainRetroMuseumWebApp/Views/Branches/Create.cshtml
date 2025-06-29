@@ -3,24 +3,33 @@
 @{
     ViewData["Title"] = "Pobočka";
 }
-
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 <h1>Přidání pobočky</h1>
 
 <form method="post" asp-action="Create">
     <div class="form-group">
         <label asp-for="Name"></label>
         <input type="text" asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
         <label asp-for="Town"></label>
         <input type="text" asp-for="Town" class="form-control" />
+        <span asp-validation-for="Town" class="text-danger"></span>
         <label asp-for="Street"></label>
         <input type="text" asp-for="Street" class="form-control" />
+        <span asp-validation-for="Street" class="text-danger"></span>
         <label asp-for="Email"></label>
         <input type="email" asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
         <label asp-for="PhoneNumber"></label>
         <input type="tel" asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
         <label asp-for="Note"></label>
         <input type="text" asp-for="Note" class="form-control" />
+        <span asp-validation-for="Note" class="text-danger"></span>
     </div>
     <br />
-    <input class="btn btn-primary" type="submit" value="Create" />
+    <a class="btn btn-outline-secondary btn-sm" asp-action="Index">🔙 Zpět na seznam poboček</a>
+    <input class="btn btn-primary" type="submit" value="💾 Create" />
 </form>

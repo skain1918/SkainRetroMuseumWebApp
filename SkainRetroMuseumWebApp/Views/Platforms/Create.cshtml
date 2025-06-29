@@ -3,19 +3,24 @@
 @{
     ViewData["Title"] = "Platforma";
 }
-
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 <h1>Přidání platformy</h1>
 
 <form method="post" asp-action="Create">
     <div class="form-group">
         <label asp-for="Name"></label>
         <input type="text" asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
         <label asp-for="YearSince"></label>
         <input type="text" asp-for="YearSince" class="form-control" />
+        <span asp-validation-for="YearSince" class="text-danger"></span>
         <label asp-for="Description"></label>
         <input type="text" asp-for="Description" class="form-control" />
 
     </div>
     <br />
-    <input class="btn btn-primary" type="submit" value="Create" />
+    <a class="btn btn-outline-secondary btn-sm" asp-action="Index">🔙 Zpět na seznam platforem</a>
+    <input class="btn btn-primary" type="submit" value="💾 Create" />
 </form>

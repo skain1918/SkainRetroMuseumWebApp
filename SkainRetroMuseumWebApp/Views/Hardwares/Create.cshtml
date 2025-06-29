@@ -1,0 +1,36 @@
+﻿
+@model HardwareDTO
+@{
+    ViewData["Title"] = "Technika";
+}
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<h1>Přidání techniky</h1>
+
+<form method="post" asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input type="text" asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <label asp-for="Manufacturer"></label>
+        <input type="text" asp-for="Manufacturer" class="form-control" />
+        <span asp-validation-for="Manufacturer" class="text-danger"></span>
+        <label asp-for="Type"></label>
+        <input type="text" asp-for="Type" class="form-control" />
+        <span asp-validation-for="Type" class="text-danger"></span>
+        <label class="control-label" asp-for="PlatformId"></label>
+        <select class ="form-control" asp-items="ViewBag.Platforms" asp-for="PlatformId"></select>
+        <label asp-for="Condition"></label>
+        <input type="text" asp-for="Condition" class="form-control" />
+        <span asp-validation-for="Condition" class="text-danger"></span>
+        <label asp-for="YearOfManufactured"></label>
+        <input type="number" asp-for="YearOfManufactured" class="form-control" />
+        <label class="control-label" asp-for="BranchId"></label>
+        <select class="form-control" asp-items="ViewBag.Branches" asp-for="BranchId"></select>
+
+    </div>
+    <br />
+    <a class="btn btn-outline-secondary btn-sm" asp-action="Index">🔙 Zpět na seznam techniky</a>
+    <input class="btn btn-primary" type="submit" value="💾 Create" />
+</form>

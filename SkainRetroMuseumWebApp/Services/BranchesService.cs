@@ -28,6 +28,27 @@ public class BranchesService
         await _dbContext.Branches.AddAsync(mapToModel(newBranch));
         await _dbContext.SaveChangesAsync();
     }
+    public async Task<BranchDTO> UpdateAsync(BranchDTO updatedBranch)
+    {
+        _dbContext.Update(mapToModel(updatedBranch));
+        await _dbContext.SaveChangesAsync();
+        return updatedBranch;
+    }
+    public async Task<BranchDTO> GetByIdAsync(int id)
+    {
+        var branch = await _dbContext.Branches.FirstOrDefaultAsync(p => p.Id == id);
+        if (branch == null)
+        {
+            return null;
+        }
+        return mapToDto(branch);
+    }
+    public async Task DeleteAsync(int id)
+    {
+        var branchToDelete = await _dbContext.Branches.FirstOrDefaultAsync(p => p.Id == id);
+        _dbContext.Remove(branchToDelete);
+        await _dbContext.SaveChangesAsync();
+    }
     private BranchDTO mapToDto(Branch branch)
     {
         return new BranchDTO
