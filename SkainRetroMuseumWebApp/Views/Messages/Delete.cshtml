@@ -1,0 +1,18 @@
+﻿@model MessageDTO
+@{
+    ViewData["Title"] = "Smazat vzkaz.";
+}
+
+<h1 class="text-danger text-lg-center">Opravdu chcete smazat tento vzkaz?</h1>
+
+<h2>@Model.Name</h2>
+<p><strong>Email:</strong> @Model.Email</p>
+<p><strong>Datum vytvoření:</strong> @Model.SentAt</p>
+<p><strong>Vzkaz:</strong> @Model.Content</p>
+
+<div>
+    <form method="post">
+        <a class="btn btn-success" asp-action="Index">🔙 Ne, zpět na vzkazy</a>
+        <button class="btn btn-danger btn-sm" type="submit" asp-action="DeleteSubmit" asp-route-id="@Model.Id">❌ Smazat</button>
+    </form>
+</div>

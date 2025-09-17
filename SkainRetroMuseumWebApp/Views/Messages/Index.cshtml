@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MessageDTO>
+@{
+    ViewData["Title"] = "Vzkazy návštěvníků";
+}
+
+<h1>Vzkazy návštěvníků</h1>
+
+<div>
+    <a class="btn btn-outline-primary btn-sm" asp-action="Create">Napsat vzkaz</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Jméno 🧙‍♀</th>
+            <th>Datum vytvoření ⏰</th>
+            <th>Vzkaz 📖</th>
+            <th>Smazat</th>
+            @* @if (User.IsInRole("kurator"))
+            {
+                <th>❌</th>
+            } *@
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var message in Model) {
+        <tr>
+            <td>@message.Name</td>
+            <td>@message.SentAt</td>
+            <td>@message.Content</td>
+                <td><a asp-action="Delete" asp-route-id="@message.Id" class="btn btn-outline-danger btn-sm">❌</a></td>
+            @* @if (User.IsInRole("kurator"))
+            <td><a asp-action="Delete" asp-route-id="@message.Id" class="text-danger">❌</a></td>
+            {
+            } *@
+        </tr>}
+    </tbody>

@@ -17,10 +17,10 @@ public class PlatformsController : Controller {
         return View();
     }
     public async Task<IActionResult> Detail(int id) {
-        return await getPlatformById(id);
+        return await GetPlatformById(id);
     }
 
-    private async Task<IActionResult> getPlatformById(int id) {
+    private async Task<IActionResult> GetPlatformById(int id) {
         var platform = await _service.GetByIdAsync(id);
         if (platform == null) {
             return View("NotFound");
@@ -29,10 +29,10 @@ public class PlatformsController : Controller {
     }
 
     public async Task<IActionResult> Edit(int id) {
-        return await getPlatformById(id);
+        return await GetPlatformById(id);
     }
     public async Task<IActionResult> Delete(int id) {
-        return await getPlatformById(id);
+        return await GetPlatformById(id);
     }
     [HttpPost]
     public async Task<IActionResult> Create(PlatformDTO newPlatform) {

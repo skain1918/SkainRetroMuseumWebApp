@@ -9,6 +9,6 @@ namespace SkainRetroMuseumWebApp.DTO {
         [Display(Name = "Vzkaz")]
         public string Content { get; set; }
         [Display(Name = "Datum a čas")]
-        public DateTime SentAt { get; set; }
+        public DateTime? SentAt { get; set; }
     }
 }
