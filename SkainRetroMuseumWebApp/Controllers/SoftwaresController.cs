@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SkainRetroMuseumWebApp.DTO;
 using SkainRetroMuseumWebApp.Models;
@@ -15,6 +16,7 @@ public class SoftwaresController : Controller {
         var allSoftwares = await _service.GetAllAsync();
         return View(allSoftwares);
     }
+    [Authorize(Roles = "kurator, obsluha")]
     public async Task<IActionResult> Create() {
         var softwaresDropdownData = await _service.GetPlatformsAsync();
         ViewBag.Platforms = new SelectList(softwaresDropdownData.Platforms, "Id", "Name");
@@ -27,6 +29,7 @@ public class SoftwaresController : Controller {
         }
         return View(software);
     }
+    [Authorize(Roles = "kurator, obsluha")]
     public async Task<IActionResult> Edit(int id) {
         var softwareToEdit = await _service.GetByIdAsync(id);
         if (softwareToEdit == null) {
@@ -44,6 +47,7 @@ public class SoftwaresController : Controller {
         ViewBag.Platforms = new SelectList(softwaresDropdownData.Platforms, "Id", "Name");
         return View(response);
     }
+    [Authorize(Roles = "kurator")]
     public async Task<IActionResult> Delete(int id) {
         var software = await _service.GetDtoByIdAsync(id);
         if (software == null) {
@@ -51,6 +55,7 @@ public class SoftwaresController : Controller {
         }
         return View(software);
     }
+    [Authorize(Roles = "kurator, obsluha")]
     [HttpPost]
     public async Task<IActionResult> Create(SoftwareDTO newSoftware) {
         if (ModelState.IsValid) {
@@ -61,6 +66,7 @@ public class SoftwaresController : Controller {
         ViewBag.Platforms = new SelectList(softwaresDropdownData.Platforms, "Id", "Name");
         return View(newSoftware);
     }
+    [Authorize(Roles = "kurator, obsluha")]
     [HttpPost]
     public async Task<IActionResult> Edit(int id, SoftwareDTO software) {
         if (ModelState.IsValid) {
@@ -71,6 +77,7 @@ public class SoftwaresController : Controller {
         ViewBag.Platforms = new SelectList(softwaresDropdownData.Platforms, "Id", "Name");
         return View(software);
     }
+    [Authorize(Roles = "kurator")]
     [HttpPost]
     public async Task<IActionResult> DeleteSubmit(int id) {
         var softwareToDelete = await _service.GetByIdAsync(id);

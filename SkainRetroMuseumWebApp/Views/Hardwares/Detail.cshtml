@@ -16,6 +16,8 @@
 
 <div>
     <a class="btn btn-outline-secondary btn-sm" asp-action="Index">🔙 Zpět na seznam techniky</a>
-    <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@Model.Id">📝 Editovat</a>
-    <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@Model.Id">❌ Smazat</a>
+    @if (User.Identity.IsAuthenticated) {
+        <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@Model.Id">📝 Editovat</a>
+        <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@Model.Id">❌ Smazat</a>
+    }
 </div>

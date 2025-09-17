@@ -14,10 +14,9 @@ namespace SkainRetroMuseumWebApp.Controllers {
             _signInManager = signInManager;
         }
         [AllowAnonymous]
-        public IActionResult Login(string returnUrl) {
-            LoginViewModel login = new LoginViewModel() {
-                ReturnUrl = returnUrl
-            };
+        public IActionResult Login(string returnUrl = "/") {
+            LoginViewModel login = new LoginViewModel();
+            login.ReturnUrl = returnUrl;
             return View(login);
         }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkainRetroMuseumWebApp.DTO;
 using SkainRetroMuseumWebApp.Services;
 
@@ -23,6 +24,7 @@ public class MessagesController : Controller {
     public async Task<IActionResult> Create() {
         return View();
     }
+    [Authorize(Roles = "kurator, obsluha")]
     public async Task<IActionResult> Delete(int id) {
         return await GetMessageById(id);
     }
@@ -35,6 +37,7 @@ public class MessagesController : Controller {
         return View(newMessage);
     }
     [HttpPost]
+    [Authorize(Roles = "kurator, obsluha")]
     public async Task<IActionResult> DeleteSubmit(int id) {
         var messageToDelete = await _service.GetByIdAsync(id);
         if (messageToDelete == null) {

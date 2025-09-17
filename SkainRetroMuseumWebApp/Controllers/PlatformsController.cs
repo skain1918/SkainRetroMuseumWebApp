@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkainRetroMuseumWebApp.DTO;
 using SkainRetroMuseumWebApp.Models;
 using SkainRetroMuseumWebApp.Services;
@@ -13,6 +14,8 @@ public class PlatformsController : Controller {
         var allPlatforms = await _service.GetAllAsync();
         return View(allPlatforms);
     }
+    [Authorize(Roles = "kurator, obsluha")]
+
     public async Task<IActionResult> Create() {
         return View();
     }
@@ -27,13 +30,17 @@ public class PlatformsController : Controller {
         }
         return View(platform);
     }
+    [Authorize(Roles = "kurator, obsluha")]
 
     public async Task<IActionResult> Edit(int id) {
         return await GetPlatformById(id);
     }
+    [Authorize(Roles = "kurator")]
+
     public async Task<IActionResult> Delete(int id) {
         return await GetPlatformById(id);
     }
+    [Authorize(Roles = "kurator, obsluha")]
     [HttpPost]
     public async Task<IActionResult> Create(PlatformDTO newPlatform) {
         if (ModelState.IsValid) {
@@ -42,6 +49,7 @@ public class PlatformsController : Controller {
         }
         return View(newPlatform);
     }
+    [Authorize(Roles = "kurator, obsluha")]
     [HttpPost]
     public async Task<IActionResult> Edit(int id, PlatformDTO platform) {
         if (ModelState.IsValid) {
@@ -50,6 +58,7 @@ public class PlatformsController : Controller {
         }
         return View(platform);
     }
+    [Authorize(Roles = "kurator")]
     [HttpPost]
     public async Task<IActionResult> DeleteSubmit(int id) {
         var platformToDelete = await _service.GetByIdAsync(id);

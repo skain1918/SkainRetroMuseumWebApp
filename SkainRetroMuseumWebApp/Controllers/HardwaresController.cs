@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SkainRetroMuseumWebApp.DTO;
 using SkainRetroMuseumWebApp.Models;
@@ -15,6 +16,7 @@ public class HardwaresController : Controller {
         var allHardwares = await _service.GetAllAsync();
         return View(allHardwares);
     }
+    [Authorize(Roles = "kurator, obsluha")]
     public async Task<IActionResult> Create() {
         var hardwaresDropdownData = await _service.GetPlatformsAndBranchesAsync();
         ViewBag.Platforms = new SelectList(hardwaresDropdownData.Platforms, "Id", "Name");
@@ -28,6 +30,7 @@ public class HardwaresController : Controller {
         }
         return View(hardware);
     }
+    [Authorize(Roles = "kurator, obsluha")]
     public async Task<IActionResult> Edit(int id) {
         var hardwareToEdit = await _service.GetByIdAsync(id);
         if (hardwareToEdit == null) {
@@ -49,6 +52,7 @@ public class HardwaresController : Controller {
         ViewBag.Branches = new SelectList(hardwaresDropdownData.Branches, "Id", "Name");
         return View(response);
     }
+    [Authorize(Roles = "kurator")]
     public async Task<IActionResult> Delete(int id) {
         var hardware = await _service.GetDtoByIdAsync(id);
         if (hardware == null) {
@@ -56,7 +60,7 @@ public class HardwaresController : Controller {
         }
         return View(hardware);
     }
-
+    [Authorize(Roles = "kurator, obsluha")]
     [HttpPost]
     public async Task<IActionResult> Create(HardwareDTO newHardware) {
         if (ModelState.IsValid) {
@@ -68,6 +72,7 @@ public class HardwaresController : Controller {
             ViewBag.Branches = new SelectList(hardwaresDropdownData.Branches, "Id", "Name");
             return View(newHardware);
     }
+    [Authorize(Roles = "kurator, obsluha")]
     [HttpPost]
     public async Task<IActionResult> Edit(int id, HardwareDTO hardware) {
         if(ModelState.IsValid) {
@@ -80,6 +85,7 @@ public class HardwaresController : Controller {
         return View(hardware);
 
     }
+    [Authorize(Roles = "kurator")]
     [HttpPost]
     public async Task<IActionResult> DeleteSubmit(int id) {
         var hardwareToDelete = await _service.GetByIdAsync(id);
