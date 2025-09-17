@@ -11,4 +11,5 @@ public class ApplicationDbContext:IdentityDbContext<AppUser> {
     public DbSet<Hardware> Hardwares { get; set; }
     public DbSet<Software> Softwares { get; set; }
     public DbSet<Branch> Branches { get; set; }
-    }
+    public DbSet<Message> Messages { get; set; }
+}

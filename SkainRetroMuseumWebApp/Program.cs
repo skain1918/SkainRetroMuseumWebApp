@@ -16,6 +16,7 @@ builder.Services.AddScoped<PlatformsService>();
 builder.Services.AddScoped<BranchesService>();
 builder.Services.AddScoped<HardwaresService>();
 builder.Services.AddScoped<SoftwaresService>();
+builder.Services.AddScoped<MessagesService>();
 
 var app = builder.Build();
 
