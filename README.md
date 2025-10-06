@@ -1,6 +1,6 @@
 # Final project for retraining course - Object oriented programming
 
-[link text](https://www.vsb.cz/czv/cs/nabidka-kurzu/it-kurzy/programovani/)
+[Kurzy VSB](https://www.vsb.cz/czv/cs/nabidka-kurzu/it-kurzy/programovani/)
 
 
 ## Topic of project is simple information system for mini-museum focused on retro gaming.
@@ -9,11 +9,11 @@
 
 ### C#, .NET MVC, EntityFramework, IdentityFramework
 
-##Model:
+##Functionalities:
 
-*item Platforms
-*item Hardware
-*item Software
-*item Users
-*items Roles
-*item Messages
+*Platforms
+*Hardware
+*Software
+*Users
+*Roles
+*Messages
