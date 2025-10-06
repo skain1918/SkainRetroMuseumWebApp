@@ -9,7 +9,7 @@
 
 ### C#, .NET MVC, EntityFramework, IdentityFramework
 
-##Functionalities:
+## Functionalities:
 
 * Platforms
 * Hardware
