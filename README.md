@@ -1,5 +1,19 @@
-project for programming course
+# Final project for retraining course - Object oriented programming
 
-azure
+[link text](https://www.vsb.cz/czv/cs/nabidka-kurzu/it-kurzy/programovani/)
 
-skainretromuseumwebapp20250629202153-dncfa0abddd9due7.canadacentral-01.azurewebsites.net
+
+## Topic of project is simple information system for mini-museum focused on retro gaming.
+
+## Database - MS SQL
+
+### C#, .NET MVC, EntityFramework, IdentityFramework
+
+##Model:
+
+*item Platforms
+*item Hardware
+*item Software
+*item Users
+*items Roles
+*item Messages
