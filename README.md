@@ -11,9 +11,9 @@
 
 ##Functionalities:
 
-*Platforms
-*Hardware
-*Software
-*Users
-*Roles
-*Messages
+* Platforms
+* Hardware
+* Software
+* Users
+* Roles
+* Messages
